@@ -22,7 +22,7 @@ const Dashboard = (): React.JSX.Element => {
 		beschreibung: string().min(1),
 		tenantId: number().min(1),
 	});
-	const { register, handleSubmit, formState } = useForm({
+	const { register, handleSubmit, formState, reset, clearErrors } = useForm({
 		defaultValues: { idInput: 0, bezeichnung: "", beschreibung: "", tenantId: 0 },
 		resolver: zodResolver(schema),
 	});
@@ -138,59 +138,66 @@ const Dashboard = (): React.JSX.Element => {
 		}
 
 		return (
-			<div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-				<div className="w-[600px] h-[800px] bg-blue-800 p-4 text-xl">
-					<div className="grid grid-cols-12 ">
-						<form onSubmit={handleSubmit(submitAuftrag)} className="container col-span-12">
-							<div className="col-span-12">
+			<div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center ">
+				<div className=" bg-blue-800 text-xl">
+					<div>
+						<form
+							onSubmit={handleSubmit(submitAuftrag)}
+							className="grid gap-4 grid-cols-12 py-4 px-8 w-[600px]"
+						>
+							<div className="col-span-6">
 								<h3 className="text-gray-400">Id</h3>
 								<input
 									type="number"
 									{...register("idInput", { valueAsNumber: true })}
-									className="bg-blue-950"
+									className="bg-blue-950 p-2"
 								/>
 								{errors.idInput?.message === undefined ? (
 									<React.Fragment></React.Fragment>
 								) : (
-									<div className="bg-red-900 p-3">{errors.tenantId?.message}</div>
+									<div className="bg-red-900 px-3 py-1 mt-2">{errors.tenantId?.message}</div>
 								)}
 							</div>
-							<div className="col-span-12">
+							<div className="col-span-6">
 								<div>
 									<h3 className="text-gray-400">Bezeichnung</h3>
-									<input type="text" className="bg-blue-950" {...register("bezeichnung")} />
+									<input type="text" className="bg-blue-950 p-2" {...register("bezeichnung")} />
 								</div>
 								{errors.beschreibung?.message === undefined ? (
 									<React.Fragment></React.Fragment>
 								) : (
-									<div className="bg-red-900 p-3">{errors.bezeichnung?.message}</div>
+									<div className="bg-red-900 px-3 py-1 mt-2">{errors.bezeichnung?.message}</div>
 								)}
 							</div>
-							<div className="col-span-12">
+							<div className="col-span-6">
 								<h3 className="text-gray-400">Beschreibung</h3>
-								<input type="text" className="bg-blue-950" {...register("beschreibung")} />
+								<input type="text" className="bg-blue-950 p-2" {...register("beschreibung")} />
 								{errors.beschreibung?.message === undefined ? (
 									<React.Fragment></React.Fragment>
 								) : (
-									<div className="bg-red-900 p-3">{errors.tenantId?.message}</div>
+									<div className="bg-red-900 px-3 py-1 mt-2">{errors.tenantId?.message}</div>
 								)}
 							</div>
-							<div className="col-span-12">
+							<div className="col-span-6">
 								<h3 className="text-gray-400">TenantId</h3>
 								<input
 									type="number"
-									className="bg-blue-950"
+									className="bg-blue-950 p-2"
 									{...register("tenantId", { valueAsNumber: true })}
 								/>
 								{errors.tenantId?.message === undefined ? (
 									<React.Fragment></React.Fragment>
 								) : (
-									<div className="bg-red-900 p-3">{errors.tenantId?.message}</div>
+									<div className="bg-red-900 px-3 py-1 mt-2">{errors.tenantId?.message}</div>
 								)}
 							</div>
 							<button
 								className="col-span-6 bg-red-700 rounded-xl p-2 mt-4"
-								onClick={() => setIsModalVisible(false)}
+								onClick={() => {
+									setIsModalVisible(false);
+									// reset();
+									clearErrors();
+								}}
 							>
 								cancel
 							</button>
