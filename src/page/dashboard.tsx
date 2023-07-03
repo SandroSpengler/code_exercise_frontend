@@ -148,6 +148,7 @@ const Dashboard = (): React.JSX.Element => {
 							<div className="col-span-6">
 								<h3 className="text-gray-400">Id</h3>
 								<input
+									id="idInput"
 									type="number"
 									{...register("idInput", { valueAsNumber: true })}
 									className="bg-blue-950 p-2"
@@ -161,7 +162,12 @@ const Dashboard = (): React.JSX.Element => {
 							<div className="col-span-6">
 								<div>
 									<h3 className="text-gray-400">Bezeichnung</h3>
-									<input type="text" className="bg-blue-950 p-2" {...register("bezeichnung")} />
+									<input
+										id="bezeichnungInput"
+										type="text"
+										className="bg-blue-950 p-2"
+										{...register("bezeichnung")}
+									/>
 								</div>
 								{errors.beschreibung?.message === undefined ? (
 									<React.Fragment></React.Fragment>
@@ -171,7 +177,12 @@ const Dashboard = (): React.JSX.Element => {
 							</div>
 							<div className="col-span-6">
 								<h3 className="text-gray-400">Beschreibung</h3>
-								<input type="text" className="bg-blue-950 p-2" {...register("beschreibung")} />
+								<input
+									id="beschreibungInput"
+									type="text"
+									className="bg-blue-950 p-2"
+									{...register("beschreibung")}
+								/>
 								{errors.beschreibung?.message === undefined ? (
 									<React.Fragment></React.Fragment>
 								) : (
@@ -181,6 +192,7 @@ const Dashboard = (): React.JSX.Element => {
 							<div className="col-span-6">
 								<h3 className="text-gray-400">TenantId</h3>
 								<input
+									id="tenantIdInput"
 									type="number"
 									className="bg-blue-950 p-2"
 									{...register("tenantId", { valueAsNumber: true })}
@@ -237,6 +249,7 @@ const Dashboard = (): React.JSX.Element => {
 						</select>
 					</div>
 					<button
+						name="BtnNeuerAuftrag"
 						className="bg-blue-600 p-4 rounded-md"
 						onClick={() => setIsModalVisible(!isModelVisible)}
 					>

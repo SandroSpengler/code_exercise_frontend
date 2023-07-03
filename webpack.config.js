@@ -26,6 +26,11 @@ module.exports = {
 				},
 				use: "ts-loader",
 			},
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: ["babel-loader"],
+			},
 			// {
 			// 	test: /\.css$/,
 			// 	use: [MiniCssExtractPlugin.loader, "css-loader"],
@@ -39,7 +44,7 @@ module.exports = {
 	devtool: prod ? undefined : "source-map",
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: "public/index.html",
+			template: "src/index.html",
 		}),
 		new MiniCssExtractPlugin(),
 		new Dotenv(),
