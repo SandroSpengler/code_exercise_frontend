@@ -99,6 +99,7 @@ const Dashboard = (): React.JSX.Element => {
 								? "Alle Auträge mit TenantId"
 								: `Tenant: ${selectedTenant}`}
 						</h3>
+                        <Summary aufträge={aufträgeOhneTenantId}/>
 						<Summary aufträge={aufträgeMitSelectedTenantId} />
 					</div>
 					<div className="col-span-6 bg-blue-800 p-2 mt-4">
